@@ -1,0 +1,3 @@
+sed -i -r '/docker-ips/d' /etc/hosts
+
+docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}   {{.Name}} {{.Config.Hostname}} {{.Config.Domainname}}  #docker-ips" $(docker ps -q) | sed -e 's/\///' >> /etc/hosts
