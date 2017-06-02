@@ -1,3 +1,5 @@
+# Remove all lines with `docker-ips` from file `/etc/hosts`
 sed -i -r '/docker-ips/d' /etc/hosts
 
+# For each started container add line with it's IP address, name, hostname, domain name and `#docker-ips` comment
 docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}   {{.Name}} {{.Config.Hostname}} {{.Config.Domainname}}  #docker-ips" $(docker ps -q) | sed -e 's/\///' >> /etc/hosts
