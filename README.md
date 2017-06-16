@@ -13,6 +13,11 @@ sudo mv docker-utils-master/* /usr/local/bin/
 
 ## Usage
 
+Extended 'docker ps' command:
+```
+docker-ps
+```
+
 To collect IP addresses of started containers to /etc/hosts, use:
 ```
 sudo docker-ips
@@ -21,7 +26,9 @@ sudo docker-ips
 To start containers from current directory and collect IP addresses of started containers to /etc/hosts, use:
 ```
 sudo dcu
+
 ```
+
 
 ## Result
 
