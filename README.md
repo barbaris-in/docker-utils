@@ -13,7 +13,7 @@ sudo mv docker-utils-master/* /usr/local/bin/
 
 ## Usage
 
-Extended 'docker ps' command:
+Extended 'docker ps' command (with IPs):
 ```
 docker-ps
 ```
