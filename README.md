@@ -12,7 +12,7 @@ sudo mv docker-utils-master/* /usr/local/bin/
 
 ## Usage
 
-Extended 'docker ps' command (with IPs):
+Extended `docker ps` command (with IPs):
 ```
 docker-ps
 ```
@@ -30,7 +30,7 @@ sudo dcu
 
 ## Result
 
-In you /etc/hosts you will see something like this
+In you `/etc/hosts` you will see something like this
 
 ```
 127.0.0.1       localhost
