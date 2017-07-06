@@ -43,4 +43,4 @@ In you /etc/hosts you will see something like this
 
 ```
 
-Notice: There are `#docker-ips` comments in each line automatically generated
+Note: There are `#docker-ips` comments in each line automatically generated
