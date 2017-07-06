@@ -2,7 +2,6 @@
 
 ## Installation
 
-Install fresh:
 ```
 wget -O barbaris-docker-utils.tar.gz https://github.com/barbaris-in/docker-utils/archive/master.tar.gz
 tar -xvf barbaris-docker-utils.tar.gz
@@ -23,10 +22,9 @@ To collect IP addresses of started containers to /etc/hosts, use:
 sudo docker-ips
 ```
 
-To start containers from current directory and collect IP addresses of started containers to /etc/hosts, use:
+To start containers from current directory and collect IP addresses of active containers to /etc/hosts, use:
 ```
 sudo dcu
-
 ```
 
 
