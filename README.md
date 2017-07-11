@@ -27,6 +27,11 @@ To start containers from current directory and collect IP addresses of active co
 sudo dcu
 ```
 
+To stop and remove all docker containers on your system
+```
+dkrclr
+```
+
 
 ## Result
 
