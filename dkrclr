@@ -1,0 +1,1 @@
+(docker stop $(docker ps -q) || echo 1) && docker rm $(docker ps -a -q)
