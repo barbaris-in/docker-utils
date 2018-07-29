@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [ ! -f "docker-compose.yml" ]; then
+    echo 123
+    exit
+    docker-init
+fi
+exit
 # TODO: Check if module already exists
 
 PROJECT=${PWD##*/}
