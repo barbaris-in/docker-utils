@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# TODO: Check if initialized
+
+
+PROJECT=asocial
+TMP_PATH="/tmp/docker-init-randomstr"
+
+rm -fr $TMP_PATH
+mkdir $TMP_PATH
+git clone git@gitlab.com:barbaris/docker-recipes.git $TMP_PATH
+
+sed -i -e s/skeleton/$PROJECT/g $TMP_PATH/skeleton/docker-compose-template.yml
+cp $TMP_PATH/skeleton/docker-compose-template.yml ./docker-compose.yml

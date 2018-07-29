@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# TODO: Check if module already exists
+
+PROJECT=asocial
+MODULE=$1
+TMP_PATH="/tmp/docker-require-randomstr"
+
+rm -fr $TMP_PATH
+mkdir $TMP_PATH
+git clone git@gitlab.com:barbaris/docker-recipes.git $TMP_PATH
+
+sed -i -e s/skeleton/$PROJECT/g $TMP_PATH/$MODULE/docker-compose-fragment.yml
+cat $TMP_PATH/$MODULE/docker-compose-fragment.yml >> ./docker-compose.yml
+if [ -d "$TMP_PATH/$MODULE/build" ]; then
+    mkdir -p builds/$MODULE
+    cp -r $TMP_PATH/$MODULE/build/* builds/$MODULE
+fi
