@@ -2,8 +2,7 @@
 
 # TODO: Check if initialized
 
-
-PROJECT=asocial
+PROJECT=${PWD##*/}
 TMP_PATH="/tmp/docker-init-randomstr"
 
 rm -fr $TMP_PATH

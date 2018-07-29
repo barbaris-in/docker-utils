@@ -2,7 +2,7 @@
 
 # TODO: Check if module already exists
 
-PROJECT=asocial
+PROJECT=${PWD##*/}
 MODULE=$1
 TMP_PATH="/tmp/docker-require-randomstr"
 
