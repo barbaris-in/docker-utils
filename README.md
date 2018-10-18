@@ -22,17 +22,6 @@ To collect IP addresses of started containers to /etc/hosts, use:
 sudo docker-ips
 ```
 
-To start containers from current directory and collect IP addresses of active containers to /etc/hosts, use:
-```
-sudo dcu
-```
-
-To stop and remove all docker containers on your system:
-```
-dkrclr
-```
-
-
 ## Result
 
 In you `/etc/hosts` you will see something like this
