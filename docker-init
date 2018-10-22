@@ -13,7 +13,8 @@ then
   REGISTRY_FILE=~/.docker-recipes-registry.csv
 fi
 
-if [ ! -f /tmp/foo.txt ]; then
+if [ ! -f $REGISTRY_FILE ]
+then
     echo File not found: $REGISTRY_FILE
     exit 1
 fi
@@ -35,7 +36,11 @@ then
   exit 1
 else
   echo Found resource: $URI
-  git clone $URI
-
+  TMP_FOLDER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+  git clone $URI /tmp/$TMP_FOLDER
   # TODO: Replace all strings "skeleton" with project name if provided
+  cp -r /tmp/$TMP_FOLDER/* ./
+  # TODO: Execute following line only if "-r" parameters is set
+  cp -r /tmp/$TMP_FOLDER/.git/ ./
+  rm -fr /tmp/$TMP_FOLDER
 fi
