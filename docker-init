@@ -6,6 +6,8 @@ then
   exit 1
 fi
 
+PROJECT_NAME=${PWD##*/}
+
 REGISTRY_FILE=${DOCKER_REGISTRY_FILE}
 
 if [ "$REGISTRY_FILE" == "" ]
@@ -38,9 +40,15 @@ else
   echo Found resource: $URI
   TMP_FOLDER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
   git clone $URI /tmp/$TMP_FOLDER
-  # TODO: Replace all strings "skeleton" with project name if provided
-  cp -r /tmp/$TMP_FOLDER/* ./
+
   # TODO: Execute following line only if "-r" parameters is set
   cp -r /tmp/$TMP_FOLDER/.git/ ./
+
+  rm -fr /tmp/$TMP_FOLDER/.git
+
+  # TODO: Replace all strings "skeleton" with project name if provided
+  find /tmp/$TMP_FOLDER -type f -print0 | xargs -0 sed -i 's/skeleton/'$PROJECT_NAME'/g'
+
+  cp -r /tmp/$TMP_FOLDER/* ./
   rm -fr /tmp/$TMP_FOLDER
 fi
