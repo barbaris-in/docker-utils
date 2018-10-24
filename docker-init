@@ -42,13 +42,18 @@ else
   git clone $URI /tmp/$TMP_FOLDER
 
   # TODO: Execute following line only if "-r" parameters is set
-  cp -r /tmp/$TMP_FOLDER/.git/ ./
+#  cp -r /tmp/$TMP_FOLDER/.git/ ./
 
-  rm -fr /tmp/$TMP_FOLDER/.git
+  rm -fr /tmp/$TMP_FOLDER/.git/
 
-  # TODO: Replace all strings "skeleton" with project name if provided
+  # Replace all strings "skeleton" with project name if provided
   find /tmp/$TMP_FOLDER -type f -print0 | xargs -0 sed -i 's/skeleton/'$PROJECT_NAME'/g'
 
+  # Copy not hidden files and directories
   cp -r /tmp/$TMP_FOLDER/* ./
+
+  # Copy hidden files and directories
+  cp -r /tmp/$TMP_FOLDER/.[^.]* ./
+
   rm -fr /tmp/$TMP_FOLDER
 fi
