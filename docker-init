@@ -21,6 +21,12 @@ then
     exit 1
 fi
 
+if [ "$1" == "list" ]
+then
+  cat $REGISTRY_FILE
+  exit 0
+fi
+
 echo Recipes registry: $REGISTRY_FILE
 
 while IFS=, read -r col1 col2
