@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+rm -fr /tmp/barbaris-docker-utils.tar.gz
+wget -O /tmp/barbaris-docker-utils.tar.gz https://github.com/barbaris-in/docker-utils/archive/master.tar.gz
+cd /tmp
+tar -xvf /tmp/barbaris-docker-utils.tar.gz
+chmod +x /tmp/docker-utils-master/*
+sudo mv docker-utils-master/* /usr/local/bin/
