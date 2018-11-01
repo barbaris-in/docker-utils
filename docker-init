@@ -38,6 +38,27 @@ do
     fi
 done < $REGISTRY_FILE
 
+
+COPY_GIT=0
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -g | --copy-git )
+                                COPY_GIT=1
+                                ;;
+#        -i | --interactive )    interactive=1
+#                                echo iii
+#                                ;;
+#        -h | --help )           usage
+#                                echo hhh
+#                                exit
+#                                ;;
+#        * )                     usage
+#                                exit 1
+    esac
+    shift
+done
+
 if [ "$URI" == "" ]
 then
   echo Error: Could not resolve URL by alias \"$1\"
@@ -47,9 +68,11 @@ else
   TMP_FOLDER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
   git clone $URI /tmp/$TMP_FOLDER
 
-  # TODO: Execute following line only if "-r" parameters is set
-#  cp -r /tmp/$TMP_FOLDER/.git/ ./
-
+  # Execute following line only if "-g" parameter is set
+  if [ "$COPY_GIT" == "1" ]
+  then
+    cp -r /tmp/$TMP_FOLDER/.git/ ./
+  fi
   rm -fr /tmp/$TMP_FOLDER/.git/
 
   # Replace all strings "skeleton" with project name if provided
