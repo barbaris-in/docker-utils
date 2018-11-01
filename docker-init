@@ -6,6 +6,8 @@ then
   exit 1
 fi
 
+ALIAS=$1
+
 PROJECT_NAME=${PWD##*/}
 
 REGISTRY_FILE=${DOCKER_REGISTRY_FILE}
@@ -25,7 +27,7 @@ echo Recipes registry: $REGISTRY_FILE
 
 while IFS=, read -r col1 col2
 do
-    if [ "$col1" == "$1" ]
+    if [ "$col1" == "$ALIAS" ]
     then
       URI=$col2
       break
