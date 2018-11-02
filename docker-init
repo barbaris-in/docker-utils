@@ -2,11 +2,9 @@
 
 if [ "$1" == "" ]
 then
-  echo Error: Alias is not specified
+  echo Error: Alias or command should be specified
   exit 1
 fi
-
-ALIAS=$1
 
 PROJECT_NAME=${PWD##*/}
 
@@ -28,6 +26,8 @@ then
   cat $REGISTRY_FILE
   exit 0
 fi
+
+ALIAS=$1
 
 echo Recipes registry: $REGISTRY_FILE
 
@@ -63,7 +63,7 @@ done
 
 if [ "$URI" == "" ]
 then
-  echo Error: Could not resolve URL by alias \"$1\"
+  echo Error: Could not resolve URL by alias \"$ALIAS\"
   exit 1
 else
   echo Found resource: $URI
