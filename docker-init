@@ -2,9 +2,20 @@
 
 if [ "$1" == "" ]
 then
-  echo Error: Alias or command should be specified
-  exit 1
+  if [ -f docker-compose.yml ]
+  then
+      echo File already exist: docker-compose.yml
+      exit 1
+  fi
+
+  mkdir builds
+  echo 'version: "3.7"'>docker-compose.yml
+  echo -en '\n'>>docker-compose.yml
+  echo 'services:'>>docker-compose.yml
+  exit 0
 fi
+
+ALIAS=$1
 
 PROJECT_NAME=${PWD##*/}
 
