@@ -6,16 +6,23 @@ fi
 # TODO: Check if module already exists
 
 PROJECT=${PWD##*/}
-MODULE=$1
-TMP_PATH="/tmp/docker-require-randomstr"
 
-rm -fr $TMP_PATH
-mkdir $TMP_PATH
-git clone git@gitlab.com:barbaris/docker-recipes.git $TMP_PATH
+TMP_FOLDER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+git clone git@gitlab.com:barbaris/docker-recipes.git /tmp/$TMP_FOLDER
+rm -fr /tmp/$TMP_FOLDER/.git
 
-sed -i -e s/skeleton/$PROJECT/g $TMP_PATH/$MODULE/docker-compose-fragment.yml
-cat $TMP_PATH/$MODULE/docker-compose-fragment.yml >> ./docker-compose.yml
-if [ -d "$TMP_PATH/$MODULE/build" ]; then
-    mkdir -p builds/$MODULE
-    cp -r $TMP_PATH/$MODULE/build/* builds/$MODULE
-fi
+while [ "$1" != "" ]; do
+  MODULE=$1
+  echo $MODULE
+  sed -i -e s/skeleton/$PROJECT/g /tmp/$TMP_FOLDER/$MODULE/docker-compose-fragment.yml
+  cat /tmp/$TMP_FOLDER/$MODULE/docker-compose-fragment.yml >> ./docker-compose.yml
+  echo -en '\n'>>docker-compose.yml
+  if [ -d "/tmp/$TMP_FOLDER/$MODULE/build" ]; then
+      mkdir -p builds/
+      cp -r /tmp/$TMP_FOLDER/$MODULE/build/ builds/
+      mv builds/build builds/$MODULE
+  fi
+  shift
+done
+
+rm -fr /tmp/$TMP_FOLDER
