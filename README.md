@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-wget -O barbaris-docker-utils.tar.gz https://github.com/barbaris-in/docker-utils/archive/master.tar.gz
+wget -O barbaris-docker-utils.tar.gz https://gitlab.com/barbaris/docker-utils/-/archive/master/docker-utils-master.tar.gz
 tar -xvf barbaris-docker-utils.tar.gz
 chmod +x docker-utils-master/*
 sudo mv docker-utils-master/* /usr/local/bin/
